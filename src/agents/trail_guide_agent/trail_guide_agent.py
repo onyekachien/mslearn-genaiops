@@ -12,7 +12,7 @@ load_dotenv()
 # prompt_file = Path(__file__).parent / 'prompts' / 'v1_instructions.txt'
 # prompt_file = Path(__file__).parent / 'prompts' / 'v2_instructions.txt'
 # prompt_file = Path(__file__).parent / 'prompts' / 'v3_instructions.txt'
-prompt_file = Path(__file__).parent / 'prompts' / 'v4_instructions.txt'
+prompt_file = Path(__file__).parent / 'prompts' / 'v4_optimized_concise.txt'
 with open(prompt_file, 'r') as f:
     instructions = f.read().strip()
 
@@ -24,7 +24,8 @@ project_client = AIProjectClient(
 agent = project_client.agents.create_version(
     agent_name=os.environ["AGENT_NAME"],
     definition=PromptAgentDefinition(
-        model=os.getenv("MODEL_NAME", "gpt-4.1"),  # Use Global Standard model
+        # model=os.getenv("MODEL_NAME", "gpt-4.1"),  # Use Global Standard model
+         model=os.getenv("MODEL_NAME", "gpt-4.1-mini"),  # Use Global Standard model
         instructions=instructions,
     ),
 )
